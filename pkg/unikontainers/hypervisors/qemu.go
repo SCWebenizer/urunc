@@ -70,7 +70,9 @@ func (q *Qemu) Execve(args ExecArgs) error {
 
 	cmdString += " -kernel " + args.UnikernelPath
 	if args.TapDevice != "" {
-		cmdString += " -net nic,model=virtio -net tap,script=no,ifname=" + args.TapDevice
+		//cmdString += " -net nic,model=virtio -net tap,script=no,ifname=" + args.TapDevice
+		cmdString += " -device virtio-net-pci,netdev=net0,disable-legacy=on,disable-modern=off"
+		cmdString += " -net nic,model=virtio -netdev tap,script=no,id=net0,ifname=" + args.TapDevice
 	}
 	if args.BlockDevice != "" {
 		// TODO: For the time being, we only have support for initrd with

@@ -44,6 +44,9 @@ func New(unikernelType string) (Unikernel, error) {
 	case UnikraftUnikernel:
 		unikernel := newUnikraft()
 		return unikernel, nil
+	case MewzUnikernel:
+		unikernel := newMewz()
+		return unikernel, nil
 	default:
 		return nil, ErrNotSupportedUnikernel
 	}

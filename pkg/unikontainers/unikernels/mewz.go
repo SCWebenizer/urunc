@@ -33,7 +33,7 @@ type MewzNet struct {
 }
 
 func (m *Mewz) CommandString() (string, error) {
-	return fmt.Sprintf("%s/%s %s ", m.Net.Address, m.Net.Mask,
+	return fmt.Sprintf("ip=%s/%s gateway=%s ", m.Net.Address, m.Net.Mask,
 		m.Net.Gateway), nil
 }
 

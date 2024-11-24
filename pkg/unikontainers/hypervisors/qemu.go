@@ -74,6 +74,7 @@ func (q *Qemu) Execve(args ExecArgs) error {
 		cmdString += " -device virtio-net-pci,netdev=net0,disable-legacy=on,disable-modern=off"
 		cmdString += " -net nic,model=virtio -netdev tap,script=no,id=net0,ifname=" + args.TapDevice
 	}
+	cmdString += " -no-reboot -device isa-debug-exit,iobase=0x501,iosize=2"
 	if args.BlockDevice != "" {
 		// TODO: For the time being, we only have support for initrd with
 		// QEMU and Unikraft. We will need to add support for block device

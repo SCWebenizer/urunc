@@ -34,8 +34,7 @@ type MewzNet struct {
 
 func (m *Mewz) CommandString() (string, error) {
 	return fmt.Sprintf("%s/%s %s ", m.Net.Address, m.Net.Mask,
-		m.Net.Gateway,
-		m.Command), nil
+		m.Net.Gateway), nil
 }
 
 func (m *Mewz) SupportsBlock() bool {

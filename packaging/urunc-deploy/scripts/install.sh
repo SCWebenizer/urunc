@@ -4,6 +4,12 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+function host_systemctl() {
+	nsenter --target 1 --mount systemctl "${@}"
+}
+function print_usage() {
+	echo "Usage: $0 [install/cleanup/reset]"
+}
 function install_urunc() {
     cp /urunc-artifacts/urunc /host/usr/local/bin/urunc
     chmod +x /host/usr/local/bin/urunc

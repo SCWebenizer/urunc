@@ -104,7 +104,7 @@ func (u *Unikraft) configureUnikraftArgs(rootFsType, ethDeviceIP, ethDeviceGatew
 			// passing info inside unikraft unikernels.
 			u.VFS.RootFS = "vfs.fstab=[ \"initrd0:/:extract:::\" ]"
 		} else {
-			u.VFS.RootFS = "vfs.fstab=[ \"fs0:/:9pfs:::\" ]"
+			u.VFS.RootFS = "vfs.fstab=[ \"fs1:/shared:9pfs:::mkmp\" ]"
 		}
 	}
 

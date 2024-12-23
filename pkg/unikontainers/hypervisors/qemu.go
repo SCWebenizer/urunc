@@ -81,8 +81,10 @@ func (q *Qemu) Execve(args ExecArgs) error {
 	if args.InitrdPath != "" {
 		cmdString += " -initrd " + args.InitrdPath
 	} else {
-		cmdString += " -fsdev local,id=p9id,path=" + args.Rootfs + ",security_model=none"
-		cmdString += " -device virtio-9p-pci,fsdev=p9id,mount_tag=fs0,disable-modern=on,disable-legacy=off"
+		// mapped-xattr is the model used by Unikraft
+		cmdString += " -fsdev local,id=p9id,path=/home/ubuntu/shared,security_model=mapped-xattr"
+		// Using a different mount tag, to not override fs0
+		cmdString += " -device virtio-9p-pci,fsdev=p9id,mount_tag=fs1"
 	}
 	exArgs := strings.Split(cmdString, " ")
 	exArgs = append(exArgs, "-append", args.Command)
